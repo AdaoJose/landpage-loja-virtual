@@ -1,0 +1,233 @@
+  .w-100{
+    width:100 !important;
+  }
+  .space-between{
+    justify-content:space-between;
+    align-content:space-between;
+  }
+  .text-center, .center{
+    text-align:center;
+    text-justify:center;
+    align-content:center;
+    justify-content:center;
+  }
+  label{
+    width:100vw;
+    text-align:center;
+    font-size:1.5rem;
+  }
+  img{
+    width:40%;
+    flex-shrink:0;
+    margin:10px;
+    max-width:200px;
+  }
+  .imgs{
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row-reverse;
+  }
+  .file{
+    position:absolute;
+    left:0px;
+    top:0px;
+    opacity:0;
+    height:100%;
+    width:100%;
+    background:red;
+  }
+  .uploadImg{
+    display: flex;
+    justify-content: center;
+    /* justifi-items: center; */
+    align-items:center;
+    
+    width:18rem;
+    height:15.225rem;
+    position:relative;
+    margin:auto;
+    background:#f6f6f6;
+   
+    font-size:1.5em;
+    flex-shrink:0;
+  }
+  .galeria{
+    display:flex;
+    flex-wrap:wrap;
+   flex-direction: column;
+  }
+  #val-categorias{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #tamanho_valor_val{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #val_quantidade_em_estoque{
+    width: 100%;
+    padding: 20px;
+  }
+  #val_quantidade_em_estoque span{
+    display: block;
+    float: left;
+    width: 80px;
+    margin: 5px;
+    background-color: #2f2f2f;
+    border-radius: 12px;
+    padding: 5px;
+    color: white;
+  }
+
+  .tamanho_valor_val > span{
+    background-color: 	#2f2f2f;
+    border: 1px solid #f7f7f7;
+    margin:5px;
+    border-radius: 12px;
+    padding: 5px;
+    color: white;
+  }
+  
+  .inputs{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-content:center;
+    height:50vh;
+  }
+  input, textarea, select{
+    font-size:25px;
+    margin:15px;
+    width:70%;
+    min-height:40px;
+    border-radius:10px;
+    text-align:center;
+    text-justify:center;
+    border:0.5px solid #f6f6f6;
+  }
+  textarea:focus, input:focus, select:focus {
+      box-shadow: 0 0 0 0;
+      border: 0 none;
+      outline: 0;
+      
+  }
+  textarea, input, select{
+    background-color: rgba(0,0,0,0);
+    text-align:center;
+    text-justify:center;
+    
+  }
+  .tamanho-estoque > input,.tamanho-estoque > select{
+    width:25%;
+  } 
+  .tamanho-estoque{
+    justify-content:center;
+    align-content:center;
+  }
+  .row{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+  }
+  .tamanho-valor{
+    align-items:center;
+    justify-items:center;
+    width:100%;
+    align-content:center;
+    justify-content:center;
+  }
+  .tamanho-valor > input, .tamanho-valor > select{
+    width:25%;
+  }
+  
+  .btn{
+    padding:10px;
+    background:none;
+    border: 1px solid #87ceeb;
+    border-radius:30px;
+    font-size:1.68rem;
+    color:#9cceee;
+    font-weight:bold;
+    cursor:pointer;
+  }
+  
+  .display-none{
+    visibility: hidden;
+    transition:.1s;
+  }
+  
+  .display-flex{
+    display:flex;
+    flex-wrap:wrap;
+  }
+  
+  .genero{
+    display:flex;
+    flex-wrap:wrap;
+    align-content:center;
+    justify-content:space-evenly
+  }
+  .genero div{
+    display:flex;
+    border:1px solid #99cccc;
+    margin:5px;
+    text-align:justify;
+    width:500px;
+    float:left;
+    padding:10px;
+  }
+  .genero > div > label{
+    font-size:1em;
+    
+  }
+  
+  .container{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:60px 80vh auto auto;
+    grid-template-areas:
+                        "header"
+                        "bloco"
+                        "btn"
+                        "footer";
+    height:100vh;
+    width:100vw;
+  }
+  
+  .header{
+    grid-area:header;
+  }
+  .section{
+    position:relative;
+    grid-area:bloco;
+    overflow:auto;
+  }
+  .bloco{
+    position:absolute;
+    width:100%;
+    top:0px;
+  }
+  .div-btn{
+    grid-area:btn;
+    display:flex;
+    align-content:center;
+    justify-content:center;
+  }
+  
+  .categoria select{
+    background-color:rgba(0,0,0,0);
+  }
+  
+  .btn-img{
+    position:absolute;
+    footer:-5px;
+  }
+  
+  .footer{
+  /*   grid-area:footer; */
+  }
+  
+  

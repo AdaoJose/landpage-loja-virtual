@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de produto</title>
+
+    <link rel="stylesheet" href="./lojinha/css/cadastro_produto.css">
+    
+
+    
+</head>
+<body>
+    <main class="container">
+        <div class="header">header</div>
+        <section class="section">  
+          
+          <div class="bloco galeria">
+            <div class="">
+              
+              
+              <label class="uploadImg">
+                Selecione sua imagem
+                <input id="image" type="file" class="file" name="image[]" multiple="multiple">
+              </label>
+              
+              <div class="imgs w-100 display-flex center">
+              </div>
+              
+              
+            </div>
+          </div>
+      
+          <label class="bloco">
+            Qual o nome deste produto
+            <textarea placeholder="Um bom nome para meu produto..." rows="6" cols="70" id="nome-produto"></textarea>
+          </label>
+          <label class="bloco">
+            Selecione categotia subcategorias para seu produto
+            <div class="display-flex categoria">
+              <div id="val-categorias"></div>
+              <select name="categoria" id="categoria">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+              <button class="btn-categoria">OK</button>
+            </div>
+          </label>
+          <div class="bloco genero">
+            <label for="genero">Há que publico se destina este produto</label>
+            <div>
+              <input name="sexo" id="homem" type="radio" value="masculino">
+              <label for="homem">Masculino</label>
+            </div>
+            <div>
+              <input name="sexo" id="mulher" type="radio" value="feminino">
+              <label for="mulher">Feminino</label>
+            </div>
+            <div>
+              <input name="sexo" id="homem_e_mulher" type="radio" value="unisex">
+              <label for="homem_e_mulher">Masculino e Feminino</label>
+            </div>
+            <div>
+              <input name="sexo" id="lgbt" type="radio" value="lgbt">
+              <label for="lgbt">Publico LGBTs</label>
+            </div>
+      
+            <div>
+              <input name="sexo" id="outros" type="radio" value="outros">
+              <label for="outros">Outros</label>
+            </div>
+          </div>
+      
+          <label class="bloco">
+            <div class="tamanho_valor_val"></div>
+            <div class="display-flex tamanho-valor">
+              
+              <input id="tamanho" type="text" placeholder="tamanho"><input id="valor" type="text" placeholder="Valor R$">
+              <button id="btn_tam_val">OK</button>
+            </div>
+          </label>
+          <label class="bloco display-flex tamanho-estoque">
+                <div class="row">
+                  Quantidade de produto em estoque
+                </div>
+                <div id="val_quantidade_em_estoque"></div>
+            
+                <select name="estoque-tamanho" id="estoque-tamanho">
+                  <option value="p">P</option>
+                  <option value="m">M</option>
+                  <option value="g">G</option>
+                </select>
+              <input id="quantidade" type="text" placeholder="quantidade em estoque">
+              <button id="btn_tamanho_estoque">OK</button>
+            
+          </label>
+          <label class="bloco">
+            <div class="row text-center w-100">De uma descrição ao seu produto</div>
+            <div class="row w-100 center">
+              <textarea placeholder="Uma boa descrição sobre este produto" name="" id="" cols="30" rows="8"></textarea>
+            </div>
+          </label>
+          <label class="bloco center">
+             Cor do produto
+            <input id="cor" type="color" placeholder="Cor">
+          </label>
+          
+        </section>
+          
+       
+          
+          
+      <!--     <input type="text" placeholder="link para outras cores"> -->
+          
+        <div class="div-btn">
+          <button class="btn">Próximo  </button>
+        </div>
+        <div class="footer">
+          footer
+        </div>
+        
+        
+      </main>
+
+      <script src="lojinha/js/cadastro_produto.js"></script>
+</body>
+</html>
