@@ -1,0 +1,18 @@
+{
+    "categoria":{
+        "calçados roupas e bolças":{
+            "calças":{
+                "masculina":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "feminina":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "masculino infantil":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "feminino infantil":["jeans", "algodão", "poliester", "moletom", "sarja"]
+            },
+            "bermudas e shorts":{
+                "masculina":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "feminina":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "masculino infantil":["jeans", "algodão", "poliester", "moletom", "sarja"],
+                "feminino infantil":["jeans", "algodão", "poliester", "moletom", "sarja"]
+            }
+        }
+    }
+}

@@ -8,10 +8,23 @@ function cadastrar_produto(){
     $produto.img.push(el.getAttribute("src"));
   });
   $produto.nome = document.querySelector("#nome-produto").value;
-  $produto.categoria = document.getElementById("val-categorias").innerText;
+  $produto.categoria = document.querySelector("#val-categorias").innerText;
   $produto.genero = document.querySelector('input[name="sexo"]:checked').value;
+  $produto.tamanho = tamanho_para_json();
   console.log($produto);
   
+}
+
+
+function tamanho_para_json(){
+  let $div_tamanho = document.querySelectorAll(".tamanho_valor_val > span");
+  let $tamanho = [];
+  console.log($div_tamanho);
+  $div_tamanho.forEach((element_span)=>{
+    $tamanho.push(element_span.innerText);
+    console.log(element_span.innerText);
+  });
+  return($tamanho);
 }
 var img = document.querySelector("[class='file']");
 
@@ -33,6 +46,7 @@ if(img){
     fileReader.readAsDataURL(files[0]);
     });
 }
+
 var bloco = document.querySelectorAll(".bloco");
 console.log(bloco);
 bloco.forEach(obj=>{
@@ -101,7 +115,7 @@ $btn_tamanho_estoque.addEventListener("click", ()=>{
   let $val_quantidade_em_estoque = document.querySelector("#val_quantidade_em_estoque");
   let $div_quantidade_em_estoque =  $val_quantidade_em_estoque.innerText;
   let $select_tamanho = document.querySelector("#estoque-tamanho");
-  console.log($select_tamanho);
+  // console.log($select_tamanho);
   let $tamanho_selecionado = $select_tamanho.options[$select_tamanho.selectedIndex].text;
   console.log($select_tamanho.selectedIndex);
   let $quantidade_produto_em_estoque = document.querySelector("#quantidade").value;
