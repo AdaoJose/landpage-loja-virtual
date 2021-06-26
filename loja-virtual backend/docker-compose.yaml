@@ -1,0 +1,29 @@
+version: '3.2'
+services: 
+    php_server_loja:
+        container_name: server_loja
+        build: ./docker-file/server-php
+        ports: 
+            - 80:8080
+            - 8080:8000
+        volumes:
+            - ./server:/server
+            - ./server/php.ini:/usr/local/etc/php/conf.d/php.ini
+        links:
+            - mysql_loja
+        restart: always
+        working_dir: /server
+        command: php -S 0.0.0.0:8080
+    mysql_loja:
+        container_name: mysql_loja
+        image: mysql
+        ports: 
+            - 3309:3306
+        restart: always
+        volumes: 
+            - ./mysql:/var/lib/mysql
+        environment: 
+            MYSQL_ROOT_PASSWORD: josereis
+            MYSQL_DATABASE: produtos
+        
+    
