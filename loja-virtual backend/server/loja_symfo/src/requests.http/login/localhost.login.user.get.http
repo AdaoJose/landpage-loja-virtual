@@ -1,0 +1,7 @@
+POST http://localhost:8080/login/user
+
+{
+    "userKey":"$2y$10$bxhUD1ZIVK.RmPY6Vae4d.a8wrMTU2o.4HhfajNl8etoe8YB7WQkO",
+    "appKey":"15890301",
+    "email":"adao.jose123.a.r@gmail.com"
+}

@@ -1,0 +1,17 @@
+POST http://localhost:8080
+content-type: application/json
+
+{
+    "nome":"calça",
+    "categoria":"calças",
+    "genero":"masculino",
+    "tamanho":{"g":1500, "m":1300},
+    "quantidade_em_estoque":{"g":10, "m":20},
+    "cor":"preto",
+    "link_para_outras_cores":{"azul":"/azul"},
+    "imagens":[
+        "https://digaspi.vteximg.com.br/arquivos/ids/192731-500-500/CALCA-JEANS-ELASTICO-PREGA-14289-JEANS-36.jpg?v=637485051231600000",
+        "https://static.zattini.com.br/produtos/calca-jeans-use-jeans-express-mom-jeans-lya/08/QII-0029-008/QII-0029-008_zoom2.jpg?ts=1608323892&ims=544x",
+        "https://img.lojasrenner.com.br/item/546018536/zoom/1.jpg"
+    ]
+}

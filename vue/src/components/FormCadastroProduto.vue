@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import $config from '../assets/config/config'
 export default {
     data(){
         return{
@@ -103,21 +104,28 @@ export default {
                 }
                 return(true);
             },
-            forJSON(){
-                return{
-                    "imagens":this.imgs,
-                    "tamanho_valor": this.tamanhoValor,
-                    "produto": this.nomeProduto,
+            paraJSON(){
+                return JSON.stringify({
+                    "nome": this.nomeProduto,
                     "descricao": this.descricaoProduto,
                     "categoria": this.categoriaSelecionada,
-                    "quantidade":this.quantidadeProduto
-                }
+                    "genero":"null",
+                    "tamanho": this.tamanhoValor,
+                    "quantidade":this.quantidadeProduto,
+                    "cor":"null",
+                    "imagens":this.imgs
+                })
             }
         }
     },
     methods:{
         previwImage(event){
+            if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+                alert('O navegador não suporta os recursos utilizados pelo aplicativo');
+                return;
+            }
             var urlTodasImagens = [];
+            console.log(event.target.files[0]);
             event.target.files.forEach(element => {
                 // console.log(event.target.files);
                 const reader = new FileReader();
@@ -132,7 +140,7 @@ export default {
                 reader.readAsDataURL(element);
             });
             this.imgs = urlTodasImagens;
-            // console.log(this.imgs);
+            console.log(this.imgs);
             
         },
 
@@ -184,19 +192,42 @@ export default {
             if(!(this.inputsOk())){
                 return false;
             }else{
-                var jsoProduto = this.forJSON();
-                console.log(jsoProduto);
+                
+                var jsoProduto = this.paraJSON();
+                // console.log(jsoProduto);
+                var myHeaders = new Headers();
+                var opecaoDeRequisicao = {
+                    method:'POST',
+                    headers:myHeaders,
+                    body:jsoProduto,
+                    redirect:'follow'
+                }
+
+                fetch($config.URLAPI, opecaoDeRequisicao)
+                    .then(e=>e.json())
+                    .then(e=>{
+                        if(e.error){
+                            console.log(e.error)
+                            alert("Erro ao cadastrar produto verifique...")
+                        }else{
+                            this.$router.push("/produtos")
+                        }
+                    })
+                    .catch(error=>console.error(error))
             }
         }
     },
     mounted(){
-        fetch('http://localhost:8080/categoria.json')
+        fetch('http://localhost:8081/categoria.json')
         .then(response=>response.json())
         .then(e=>{
             this.optionsCategoria.subcategorias = e.categoria
             this.optionsCategoria.categoriasAtuais = Object.keys(e.categoria);
             // console.log(e.categoria);
         })
+        
+        // console.log(this.$router);
+        // this.$router.push('/dashboard');
     }
 }
 </script>

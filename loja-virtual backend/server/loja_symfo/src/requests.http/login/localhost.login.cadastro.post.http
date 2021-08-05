@@ -1,0 +1,9 @@
+POST http://localhost:8080/login/cadastro
+
+{
+    "email":"adao.jose123.a.r@gmail.com",
+    "senha":"josereis@1996",
+    "nome":"Jose Reis",
+    "appKey":"123456",
+    "avatar":"avatar.io"
+}

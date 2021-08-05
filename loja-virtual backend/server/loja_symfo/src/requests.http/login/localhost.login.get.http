@@ -1,0 +1,7 @@
+POST http://localhost:8080/login
+
+{
+    "email":"adao.jose123.a.r@gmail.com",
+    "pass":"josereis@1996",
+    "appKey":15893
+}

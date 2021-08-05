@@ -12,6 +12,7 @@ use Symfony\Bundle\MakerBundle\Str;
 
 class ProdutoController extends AbstractController
 {
+    public $cors = ["Access-Control-Allow-Origin"=>"*", "Access-Control-Allow-Headers"=>"*", "Access-Control-Allow-Methods"=>"*","Content-Type"=>"application/json"];
     /**
      * @Route("/", name="get_produto", methods={"GET"})
      */
@@ -20,7 +21,9 @@ class ProdutoController extends AbstractController
         $produtos =  $this->getDoctrine()->getRepository(Produtos::class)->findAll();
         return $this->json([
             'data' => $produtos
-        ]);
+            
+
+        ], 200, $this->cors);
     }
 
     /**
@@ -29,7 +32,8 @@ class ProdutoController extends AbstractController
 
      public function create(Request $Request){
             $data = $this->getJsonReceived();
-            var_dump(json_encode($data));
+            //redimensionando imagem 
+            $data["imagens"] = $this->redimensionamentoDeImagem($data["imagens"]);
             $produto = new Produtos();
             // var_dump($data);
             echo "\n \n \n";
@@ -39,7 +43,8 @@ class ProdutoController extends AbstractController
             $doctrine = $this->getDoctrine()->getManager();
             $doctrine->persist($produto);
             $doctrine->flush();
-            return $this->json($data); 
+            return $this->json($data, Response::HTTP_OK, array('Access-Control-Allow-Origin'=> '*'));
+            // return $this->json([]);
      }
 
      /**
@@ -52,7 +57,7 @@ class ProdutoController extends AbstractController
       }
 
       /**
-       * @Route("/idDoProduto", name="delete", methods={"DELETE"})
+       * @Route("/idDoProduto", name="deleteProduto", methods={"DELETE"})
        */
 
        public function delete($idDoProduto){
@@ -60,11 +65,11 @@ class ProdutoController extends AbstractController
        }
 
        /**
-        * @Route("/{idDoProduto}", name="update", methods={"PUT", "PATCH"})
+        * @Route("/{idDoProduto}", name="updateProduto", methods={"PUT", "PATCH"})
         */
         public function update($idDoProduto){
             $produto = $this->getDoctrine()->getRepository(Produtos::class)->find($idDoProduto);
-            echo array_key_exists("nome", $this->getJsonReceived());
+            // echo array_key_exists("nome", $this->getJsonReceived());
             $produtoDesatualizado  = $produto->getItem();
             if(array_key_exists("nome", $this->getJsonReceived())){
                 $produtoDesatualizado["nome"] = $this->getJsonReceived()['nome'];
@@ -100,6 +105,54 @@ class ProdutoController extends AbstractController
         }
 
         private function getJsonReceived(){
+            // var_dump(json_decode(file_get_contents("php://input")));
             return json_decode(file_get_contents("php://input"), true);
+        }
+        private function redimensionamentoDeImagem(array $arrayImagens): ?array
+        {
+            
+            $pathImage = "/server/imagens";
+            $imagensRedimensionadas = [];
+            foreach($arrayImagens as $imagem){
+                $imagem = substr($imagem["url"], strpos($imagem['url'], ',')+1);
+                $imagemBinario = base64_decode($imagem);
+                $nomeTemporario = tempnam(sys_get_temp_dir(), 'base64_decode_');
+                $file = fopen($nomeTemporario, 'w');
+                fwrite($file, $imagemBinario);
+                fclose($file);
+                $imagemBinario = null;
+
+                $img = imagecreatefromjpeg($nomeTemporario);
+                $originalWidth  = imageSX($img);
+                $originalHeight = imageSY($img);
+
+                $newWidth = 250;
+                $newHeight = 250;
+                if($originalWidth > $originalHeight)
+                {
+                    $widthRatio = $newWidth;
+                    $heightRatio = $originalHeight*($newHeight / $originalWidth);
+                }
+
+                if($originalWidth < $originalHeight)
+                {
+                    $widthRatio = $originalWidth*($newWidth / $originalHeight);
+                    $heightRatio = $newHeight;
+                }
+
+                if($originalWidth == $originalHeight)
+                {
+                    $widthRatio = $newWidth;
+                    $heightRatio = $newHeight;
+                }
+                
+                $resizedImg = imagecreatetruecolor($widthRatio, $heightRatio);
+                imagecopyresampled($resizedImg, $img, 0, 0, 0, 0, $widthRatio, $heightRatio, $originalWidth, $originalHeight);
+                imagejpeg($resizedImg, $nomeTemporario);
+                $imageBase64 = base64_encode(file_get_contents($nomeTemporario));
+                array_push($imagensRedimensionadas, array('url'=>"data:image/jpeg;base64,".$imageBase64));
+                file_put_contents($pathImage."imagebase64.img", $imageBase64);
+            }
+            return $imagensRedimensionadas;
         }
 }
